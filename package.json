@@ -1,0 +1,34 @@
+{
+  "name": "analytics-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdipanjan/analytics-poc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alchemy-sdk": "^2.4.3",
+    "axios": "^1.3.3",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.6.0",
+    "erc-20-abi": "^1.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "web3": "^1.8.2",
+    "web3-eth": "^1.8.2"
+  },
+  "bugs": {
+    "url": "https://github.com/mdipanjan/analytics-poc/issues"
+  },
+  "homepage": "https://github.com/mdipanjan/analytics-poc#readme"
+}
