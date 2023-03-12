@@ -6,7 +6,7 @@ const alchemyProvider = process.env.ALCHEMY_HTTPS_PROVIDER;
 const alchemyKey = process.env.ALCHEMY_API_KEY;
 const ERC20_ABI = require("erc-20-abi");
 
-async function _getErc20Balance(request, response) {
+async function getErc20Balance(request, response) {
   try {
     const { address } = request.body;
     const web3 = new Web3(
@@ -104,5 +104,5 @@ function getChainName(chainId) {
 }
 
 module.exports = {
-  _getErc20Balance,
+  getErc20Balance,
 };

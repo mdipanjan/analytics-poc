@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/balance/balance.controller");
+const balanceController = require("../controllers/balance/balance.controller");
 
-router.get("/balance", authController.getERC20Balance);
+router.get("/balance", balanceController.getERC20Balance);
 
 module.exports = router;

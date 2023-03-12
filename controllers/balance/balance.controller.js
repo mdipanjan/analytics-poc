@@ -33,7 +33,7 @@ async function getERC20Balance(request, response) {
   try {
     // Get balance of token
     const { address } = request.body;
-
+    const resultBalance = [];
     // Get token balances
     const balances = await alchemy.core.getTokenBalances(address);
 
@@ -44,22 +44,34 @@ async function getERC20Balance(request, response) {
 
     for (let token of nonZeroBalances) {
       let balance = token.tokenBalance;
+      let tokenObj = {};
 
-      // Get metadata of token
-      const metadata = await alchemy.core.getTokenMetadata(
-        token.contractAddress
-      );
-
-      // Compute token balance in human-readable format
-      balance = balance / Math.pow(10, metadata.decimals);
-      balance = balance.toFixed(2);
-
-      // Print name, balance, and symbol of token
-      console.log(`${i++}. ${metadata.name}: ${balance} ${metadata.symbol}`);
+      try {
+        // Get metadata of token
+        const metadata = await alchemy.core.getTokenMetadata(
+          token.contractAddress
+        );
+        // Compute token balance in human-readable format
+        balance = balance / Math.pow(10, metadata.decimals);
+        balance = balance.toFixed(2);
+        // Print name, balance, and symbol of token
+        resultBalance.push(
+          Object.assign(tokenObj, {
+            token: metadata.name,
+            symbol: metadata.symbol,
+            balance,
+          })
+        );
+      } catch (error) {
+        console.log(
+          `Error getting metadata for token at ${token.contractAddress}: ${error}`
+        );
+        continue; // Skip to the next token
+      }
     }
 
     response.status(200).json({
-      data: "Hello",
+      data: resultBalance,
     });
   } catch (error) {
     console.log(error);
